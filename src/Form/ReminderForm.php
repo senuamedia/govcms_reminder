@@ -108,7 +108,8 @@ class ReminderForm extends FormBase {
 
     $form['recurring'] = [
       '#type' => 'textfield',
-      '#title' => t('Recurring'),
+      '#title' => t('How often (time period)'),
+        '#description' => $this->t('The time period can be +1 hour, +1 day, etc and indicates the period between each reminder being sent.'),
       '#default_value' => !empty($reminder['recurring']) ? $reminder['recurring'] : NULL,
       '#states' => [
         'visible' => [
