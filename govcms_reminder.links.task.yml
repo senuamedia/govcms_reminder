@@ -1,0 +1,21 @@
+govcms_reminder.admin_overview:
+  title: 'Reminders'
+  route_name: govcms_reminder.admin_overview
+  base_route: govcms_reminder.admin_overview
+govcms_reminder.types:
+  title: 'Configuration'
+  route_name: govcms_reminder.types
+  base_route: govcms_reminder.admin_overview
+govcms_reminder.logger.admin_overview:
+  title: 'Reminder logs'
+  route_name: govcms_reminder.logger.admin_overview
+  base_route: govcms_reminder.admin_overview
+govcms_reminder.logger.sent_overview:
+  title: 'Sent'
+  route_name: govcms_reminder.logger.admin_overview
+  parent_id: govcms_reminder.logger.admin_overview
+govcms_reminder.logger.remaining_overview:
+  title: 'Remaining'
+  route_name: govcms_reminder.logger.remaining_overview
+  parent_id: govcms_reminder.logger.admin_overview
+

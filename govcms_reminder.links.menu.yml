@@ -1,0 +1,5 @@
+govcms_reminder.settings:
+  title: 'Reminder settings'
+  parent: system.admin_config_system
+  description: 'Mange reminders, types, logs,...'
+  route_name: govcms_reminder.admin_overview

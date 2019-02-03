@@ -1,0 +1,184 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the govcms_reminder module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function govcms_reminder_schema() {
+  $schema['govcms_reminders'] = [
+    'description' => 'Store all reminders.',
+    'fields' => [
+      'rid' => [
+        'description' => 'Reminder ID.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'rtid' => [
+        'description' => 'Reminder Type ID.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'entity_label' => [
+        'description' => 'Entity Label.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ],
+      'entity_id' => [
+        'description' => 'Entity ID.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'date_time' => [
+        'description' => 'Configuration date to send the reminder',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'recurring' => [
+        'description' => 'Time period to loop sending',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => FALSE,
+      ],
+      'status' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+    ],
+    'indexes' => [
+      'rtid' => ['rtid'],
+      'entity_id' => ['entity_id'],
+      'recurring' => ['recurring'],
+      'rid' => ['rid'],
+    ],
+    'primary key' => ['rid'],
+  ];
+  $schema['govcms_reminder_types'] = [
+    'description' => 'Store all reminder types.',
+    'fields' => [
+      'rtid' => [
+        'description' => 'Reminder Type ID.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'entity_type' => [
+        'description' => 'Entity type.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+      'bundle' => [
+        'description' => 'Entity type.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+      'mail_to' => [
+        'description' => 'Emails will be sent.',
+        'type' => 'text',
+        'not null' => TRUE,
+      ],
+      'subject' => [
+        'description' => 'Mail subject',
+        'type' => 'varchar',
+        'length' => 2047,
+        'not null' => TRUE,
+      ],
+      'mail_content' => [
+        'type' => 'text',
+        'description' => 'Email content will be sent.',
+        'not null' => TRUE,
+      ],
+      'created' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'changed' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+    ],
+    'indexes' => [
+      'reminder_changed' => ['changed'],
+      'reminder_created' => ['created'],
+      'rtid' => ['rtid'],
+    ],
+    'primary key' => ['rtid'],
+  ];
+
+  $schema['govcms_reminder_logger'] = [
+    'description' => 'Track all emails have been sent.',
+    'fields' => [
+      'rlid' => [
+        'description' => 'Log ID.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'rid' => [
+        'description' => 'Reminder type ID.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'mailto' => [
+        'description' => 'to whom this mail is going',
+        'type' => 'text',
+        'size' => 'medium',
+        'not null' => TRUE,
+      ],
+      'subject' => [
+        'description' => 'Mail subject',
+        'type' => 'varchar',
+        'length' => 2047,
+        'not null' => TRUE,
+      ],
+      'body' => [
+        'description' => 'Body text of the mail',
+        'type' => 'text',
+        'not null' => TRUE,
+        'size' => 'big',
+      ],
+      'mailfrom' => [
+        'description' => 'the FROM email address',
+        'type' => 'varchar',
+        'length' => 2047,
+        'not null' => TRUE,
+      ],
+      'status' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 1,
+      ],
+      'date_sent' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+    ],
+    'indexes' => [
+      'rlid' => ['rlid'],
+      'mailto' => [['mailto', 200]],
+      'mailfrom' => [['mailfrom', 100]],
+      'subject' => [['subject', 20]],
+      'date_sent' => ['date_sent'],
+    ],
+    'primary key' => ['rlid'],
+  ];
+
+  return $schema;
+}

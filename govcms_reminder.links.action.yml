@@ -1,0 +1,5 @@
+govcms_reminder.types_add:
+  route_name: govcms_reminder.types_add
+  title: 'Add reminder type'
+  appears_on:
+    - govcms_reminder.types

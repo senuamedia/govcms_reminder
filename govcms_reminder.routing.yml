@@ -1,0 +1,83 @@
+govcms_reminder.admin_overview:
+  path: '/admin/config/system/reminders'
+  defaults:
+    _controller: '\Drupal\govcms_reminder\Controller\ReminderController::adminOverview'
+    _title: 'Reminders'
+  requirements:
+    _permission: 'administer site configuration'
+
+govcms_reminder.reminder_edit:
+  path: '/admin/config/system/reminders/{rid}/edit'
+  defaults:
+    _form: '\Drupal\govcms_reminder\Form\ReminderForm'
+    _title: 'Edit reminder'
+  requirements:
+    _permission: 'administer site configuration'
+    id: ^\d+$
+
+govcms_reminder.reminder_delete:
+  path: '/admin/config/system/reminders/{rid}/delete'
+  defaults:
+    _form: '\Drupal\govcms_reminder\Form\ReminderDeleteForm'
+    _title: 'Confirm deletion reminder'
+  requirements:
+    _permission: 'administer site configuration'
+    id: ^\d+$
+
+govcms_reminder.types:
+  path: '/admin/config/system/reminder-types'
+  defaults:
+    _controller: '\Drupal\govcms_reminder\Controller\ReminderTypeController::typeList'
+    _title: 'Reminder Types'
+  requirements:
+    _permission: 'administer site configuration'
+
+govcms_reminder.types_add:
+  path: '/admin/config/system/reminder-types/add'
+  defaults:
+    _form: '\Drupal\govcms_reminder\Form\ReminderTypeForm'
+    _title: 'Add reminder type'
+  requirements:
+    _permission: 'administer site configuration'
+
+govcms_reminder.types_edit:
+  path: '/admin/config/system/reminder-types/{rtid}/edit'
+  defaults:
+    _form: '\Drupal\govcms_reminder\Form\ReminderTypeForm'
+    _title: 'Edit reminder type'
+  requirements:
+    _permission: 'administer site configuration'
+    id: ^\d+$
+
+govcms_reminder.types_delete:
+  path: '/admin/config/system/reminder-types/{rtid}/delete'
+  defaults:
+    _form: '\Drupal\govcms_reminder\Form\ReminderTypeDeleteForm'
+    _title: 'Confirm deletion reminder type'
+  requirements:
+    _permission: 'administer site configuration'
+    id: ^\d+$
+
+govcms_reminder.logger.admin_overview:
+  path: '/admin/config/system/reminder/logger/sent'
+  defaults:
+    _controller: '\Drupal\govcms_reminder\Controller\LoggerController::sentOverview'
+    _title: 'Reminder Loggers'
+  requirements:
+    _permission: 'administer site configuration'
+
+govcms_reminder.logger.remaining_overview:
+  path: '/admin/config/system/reminder/logger/remaining'
+  defaults:
+    _controller: '\Drupal\govcms_reminder\Controller\LoggerController::remainingOverview'
+    _title: 'Remaining log'
+  requirements:
+    _permission: 'administer site configuration'
+
+govcms_reminder.logger.show_log:
+  path: '/admin/config/system/reminder/logger/{rlid}'
+  defaults:
+    _controller: '\Drupal\govcms_reminder\Controller\LoggerController::showLogDetail'
+    _title: 'Log Detail'
+  requirements:
+    _permission: 'administer site configuration'

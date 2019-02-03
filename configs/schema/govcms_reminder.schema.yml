@@ -1,0 +1,4 @@
+# Schema for the configuration files of the GovCMS Reminder module.
+field.widget.settings.reminder:
+  type: mapping
+  label: 'Link format settings'

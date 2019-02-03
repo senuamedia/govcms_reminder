@@ -1,0 +1,50 @@
+<?php
+
+/**
+ * @file
+ * Contains hooks, global variables, functions.
+ */
+
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\govcms_reminder\ReminderType;
+
+/**
+ * Implements hook_entity_bundle_field_info().
+ */
+function govcms_reminder_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle, array $base_field_definitions) {
+  $reminder_types = ReminderType::loadMultiple();
+  foreach ($reminder_types as $type) {
+    if ($entity_type->id() == $type->getEntityType() && $bundle == $type->getBundle()) {
+      $fields['reminder'] = BaseFieldDefinition::create('reminder')
+        ->setLabel(t('Reminder'))
+        ->setTranslatable(TRUE)
+        ->setDisplayOptions('form', [
+          'type' => 'reminder',
+          'weight' => 30,
+        ])
+        ->setDisplayConfigurable('form', TRUE)
+        ->setComputed(TRUE);
+
+      return $fields;
+    }
+  }
+}
+
+/**
+ * Implements hook_mail().
+ */
+function govcms_reminder_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'reminder_send':
+      $moduleHandler = \Drupal::service('module_handler');
+      if ($moduleHandler->moduleExists('swiftmailer')) {
+        $message['format'] = 'text/html';
+        $message['headers']['Content-Type'] = SWIFTMAILER_FORMAT_HTML;
+      }
+      $message['from'] = $params['mailfrom'];
+      $message['subject'] = $params['subject'];
+      $message['body'][] = $params['message'];
+      break;
+  }
+}

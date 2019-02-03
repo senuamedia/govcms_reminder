@@ -1,0 +1,10 @@
+services:
+  govcms_reminder.logger_storage:
+    class: Drupal\govcms_reminder\LoggerStorage
+    arguments: ['@database']
+  govcms_reminder.reminder_storage:
+    class: Drupal\govcms_reminder\ReminderStorage
+    arguments: ['@database']
+  govcms_reminder.reminder_manager:
+    class: Drupal\govcms_reminder\ReminderManager
+    arguments: ['@govcms_reminder.reminder_storage', '@govcms_reminder.logger_storage']

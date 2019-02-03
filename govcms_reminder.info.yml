@@ -1,0 +1,8 @@
+name: GovCMS Reminder
+description: 'Provides the ability to send an email / notice based on the entity selected.'
+package: GovCMS
+
+configure: govcms_reminder.list
+type: module
+core: 8.x
+# configure: devel.admin_settings

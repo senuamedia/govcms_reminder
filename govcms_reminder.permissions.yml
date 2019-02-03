@@ -1,0 +1,4 @@
+administer govcms reminder:
+  title: 'Administer govCMS reminders'
+create govcms reminder:
+  title: 'Create and edit reminders'

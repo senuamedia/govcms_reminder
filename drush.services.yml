@@ -1,0 +1,6 @@
+services:
+  reminder.run:
+    class: Drupal\govcms_reminder\Commands\ReminderCommands
+    arguments: []
+    tags:
+      -  { name: drush.command }

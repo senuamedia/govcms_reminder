@@ -1,0 +1,8 @@
+govcms_reminder:
+  version: VERSION
+  js:
+    govcms_reminder.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupal.form
