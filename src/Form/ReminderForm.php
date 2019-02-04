@@ -93,7 +93,7 @@ class ReminderForm extends FormBase {
       '#type' => 'datetime',
       '#title' => t('Date Time'),
       '#required' => $form['#required'],
-      '#description' => $this->t('The date you want to send reminder.'),
+      '#description' => $this->t('The date you want to send the reminder.'),
       '#date_date_format' => 'Y-m-d H:i:s',
       '#default_value' => is_numeric($reminder['date_time']) ? DrupalDateTime::createFromTimestamp($reminder['date_time']) : NULL,
       '#prefix' => '<div id="date-time-wrapper">',

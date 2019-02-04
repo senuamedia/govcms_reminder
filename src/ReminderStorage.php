@@ -11,7 +11,7 @@ use Drupal\Core\Database\Query\Condition;
 class ReminderStorage {
 
   /**
-   * The table for the url_alias storage.
+   * The table for the govcms_reminder storage.
    */
   const TABLE = 'govcms_reminders';
 
@@ -23,10 +23,10 @@ class ReminderStorage {
   protected $connection;
 
   /**
-   * Constructs a Path CRUD object.
+   * Constructs a reminder CRUD object.
    *
    * @param \Drupal\Core\Database\Connection $connection
-   *   A database connection for reading and writing path aliases.
+   *   A database connection for reading and writing reminders.
    */
   public function __construct(Connection $connection) {
     $this->connection = $connection;

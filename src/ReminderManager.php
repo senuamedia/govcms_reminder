@@ -25,7 +25,7 @@ class ReminderManager {
   protected $loggerStorage;
 
   /**
-   * Constructs an ReminderManager.
+   * Constructs a ReminderManager.
    *
    * @param \Drupal\govcms_reminder\ReminderStorage $storage
    *   The reminder storage service.

@@ -11,7 +11,7 @@ use Drupal\Core\Database\Query\Condition;
 class LoggerStorage {
 
   /**
-   * The table for the url_alias storage.
+   * The table for the reminder logger storage.
    */
   const TABLE = 'govcms_reminder_logger';
 
@@ -26,7 +26,7 @@ class LoggerStorage {
    * Constructs a Path CRUD object.
    *
    * @param \Drupal\Core\Database\Connection $connection
-   *   A database connection for reading and writing path aliases.
+   *   A database connection for reading and writing reminder logs.
    */
   public function __construct(Connection $connection) {
     $this->connection = $connection;
